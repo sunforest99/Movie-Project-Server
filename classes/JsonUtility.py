@@ -1,7 +1,7 @@
 import json
 from multipledispatch import dispatch
 
-class Jsontility:
+class JsonUtility:
 
     jsondata = None
 
@@ -13,14 +13,14 @@ class Jsontility:
             with open(filename, encoding='utf-8') as data_file:
                 self.jsondata = json.loads(data_file.read())
         except:
-            print("ImportJson : Can't open file")
+            print("ImportJson : \"" + filename + "\"Can't open file")
 
     def exportjson(self, filename):
         try:
             with open(filename, 'w', encoding='utf-8') as outfile:
                 json.dump(self.jsondata, outfile, indent = 4, sort_keys = True, ensure_ascii=False)
         except:
-            print("ExportJson : can't open file")
+            print("ExportJson : \"" + filename + "\" can't open file")
     
     @dispatch(str, str, str, float, str)
     def makeformet(self, moviename : str, ticketlink : str, movietime : str, grade : float, imgurl : str):

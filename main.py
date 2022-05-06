@@ -1,19 +1,21 @@
 import classes.crawler as crawler
 import schedule
 import time
+# from keep_alive import keep_alive
+import classes.JsonUtility as ex
 
-import classes.ExportJson as ex
+crawler = crawler.Crawler()
+crawler.InitSelenium();
 
-def root():
-    test = crawler.Crawler()
-    test.getPage()
-    print("in")
+def Root():
+  crawler.setWeb('https://naver.com')
 
-t = ex.Jsontility()
-t.makeformet('asdf', 'https://qwer', '100분', float(4.5), 'https://asdf')
-t.makeformet('닥스', 10, 1)
-t.makeformet('닥스', '2021-10-02', '100분', 'https://asdf')
+schedule.every(1).minutes.do(Root)
 
+# keep_alive()
+while True:
+  schedule.run_pending()
+  time.sleep(1)
 
 # while True:
 #     schedule.run_pending()
