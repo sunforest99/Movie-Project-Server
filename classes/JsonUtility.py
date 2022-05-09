@@ -67,7 +67,7 @@ class JsonUtility:
             if moviename == self.jsondata[i]["movie_name"]:
                 return None
         self.jsondata.append(json_formet)
-        self.jsondata = list(map(dict, set(tuple(sorted(d.items())) for d in self.jsondata)))
+        self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
         self.exportjson('./movie_rank.json')
 
     # @brief 개봉 예정 영화 리스트 json 형식 만들기

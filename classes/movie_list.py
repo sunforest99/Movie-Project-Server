@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import bs4
 import warnings
 import classes.JsonUtility as js
 
