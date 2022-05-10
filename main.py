@@ -1,4 +1,3 @@
-import imp
 # import classes.crawler as crawler
 # import schedule
 # import time
@@ -6,11 +5,12 @@ import imp
 import classes.JsonUtility as ex
 import classes.movie_rank
 import classes.movie_list
+import classes.movie_to_be_open
 
 # crawler = crawler.Crawler()
 # crawler.InitSelenium();
 
-movie = classes.movie_rank.Movie_rank()
+movie = classes.movie_to_be_open.Movie_to_be_open()
 movie.crawler()
 
 def Root():

@@ -73,15 +73,14 @@ class JsonUtility:
     # @brief 개봉 예정 영화 리스트 json 형식 만들기
     # @param string moviename 영화 제목
     # @param string opendate 상영 예정일
-    # @param movetime 영화 시간
     # @param string imgurl 영화 포스트 링크
-    @dispatch(str, str, str, str)
-    def makeformet(self, moviename :str, opendate : str, movietime : str, imgurl : str):
+    @dispatch(str, str, str)
+    def makeformet(self, moviename :str, opendate : str, imgurl : str):
         self.importjson('./movie_to_be_open.json')
-        json_formet = { "movie_name": "" + moviename,  "open_date": "" + opendate, "movie_time" : "" + movietime, "img_url": "" + str(imgurl)}
+        json_formet = { "movie_name": "" + moviename,  "open_date": "" + opendate, "img_url": "" + str(imgurl)}
         for i in range(len(self.jsondata)):
             if moviename == self.jsondata[i]["movie_name"]:
                 return None
         self.jsondata.append(json_formet)
-        self.jsondata = list(map(dict, set(tuple(sorted(d.items())) for d in self.jsondata)))
+        self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
         self.exportjson('./movie_to_be_open.json')
