@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import warnings
 import classes.JsonUtility as js
-
+import config as co
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
 
 class Movie_list:
@@ -20,7 +20,7 @@ class Movie_list:
         soup = BeautifulSoup(response.content, 'html.parser')
         list = soup.find('ul', 'lst_detail_t1').find_all('li')
         self.json = js.JsonUtility()
-        self.json.jsonclear('movie_list.json')
+        self.json.jsonclear(co.listFilename)
 
         for li_item in list:
             link = li_item.find('dt', 'tit').find('a')

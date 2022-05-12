@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import warnings
 import classes.JsonUtility as js
+import config as co
 
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
 
@@ -25,7 +26,7 @@ class Movie_rank:
         list = soup.find('tbody').find_all('tr')
 
         self.json = js.JsonUtility()
-        self.json.jsonclear('movie_rank.json')
+        self.json.jsonclear(co.rankFilename)
         self.count = 0
 
         for tr_tiem in list:

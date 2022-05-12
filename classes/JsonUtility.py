@@ -1,7 +1,7 @@
 import json
 from multipledispatch import dispatch
 import collections
-
+import config as co
 class JsonUtility:
 
     jsondata = None
@@ -45,7 +45,7 @@ class JsonUtility:
     # @param imgurl 영화 포스트 url 링크
     @dispatch(str, str, str, float, str)
     def makeformet(self, moviename : str, ticketlink : str, movietime : str, grade : float, imgurl : str):
-        self.importjson('./movie_list.json')
+        self.importjson('./' + co.listFilename)
         json_formet = { "movie_name": "" + moviename,  "ticket_link": "" + ticketlink.replace('basic', 'running'), "grade": "" + str(grade), "movie_time" : "" + movietime, "img_url": "" + str(imgurl)}
         for i in range(len(self.jsondata)):
             if moviename == self.jsondata[i]["movie_name"]:
@@ -53,7 +53,7 @@ class JsonUtility:
         self.jsondata.append(json_formet)
         self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
 
-        self.exportjson('./movie_list.json')
+        self.exportjson('./' + co.listFilename)
     
     # @brief 영화 순위 리스트 json 형식 만들기
     # @param string moviename 영화 제목
@@ -61,14 +61,14 @@ class JsonUtility:
     # @param int variable 변틍폭 
     @dispatch(str, int, int)
     def makeformet(self, moviename : str, rank : int, variable : int):
-        self.importjson('./movie_rank.json')
+        self.importjson('./' + co.rankFilename)
         json_formet = { "movie_name": "" + moviename, "rank": "" + str(rank), "variable" : "" + str(variable)}
         for i in range(len(self.jsondata)):
             if moviename == self.jsondata[i]["movie_name"]:
                 return None
         self.jsondata.append(json_formet)
         self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
-        self.exportjson('./movie_rank.json')
+        self.exportjson('./' + co.rankFilename)
 
     # @brief 개봉 예정 영화 리스트 json 형식 만들기
     # @param string moviename 영화 제목
@@ -76,11 +76,11 @@ class JsonUtility:
     # @param string imgurl 영화 포스트 링크
     @dispatch(str, str, str)
     def makeformet(self, moviename :str, opendate : str, imgurl : str):
-        self.importjson('./movie_to_be_open.json')
+        self.importjson('./' + co.openFilename)
         json_formet = { "movie_name": "" + moviename,  "open_date": "" + opendate, "img_url": "" + str(imgurl)}
         for i in range(len(self.jsondata)):
             if moviename == self.jsondata[i]["movie_name"]:
                 return None
         self.jsondata.append(json_formet)
         self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
-        self.exportjson('./movie_to_be_open.json')
+        self.exportjson('./' + co.openFilename)

@@ -1,8 +1,10 @@
 from cgitb import text
+import imp
 from bs4 import BeautifulSoup
 import requests
 import warnings
 import classes.JsonUtility as js
+import config as co
 
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
 
@@ -24,7 +26,7 @@ class Movie_to_be_open:
         soup = BeautifulSoup(response.content, 'html.parser')
 
         self.json = js.JsonUtility()
-        self.json.jsonclear('movie_list.json')
+        self.json.jsonclear(co.listFilename)
 
         list = soup.find('div', 'article').find_all('div', 'lst_wrap')
 

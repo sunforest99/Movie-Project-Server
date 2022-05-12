@@ -6,15 +6,19 @@ import classes.JsonUtility as ex
 import classes.movie_rank
 import classes.movie_list
 import classes.movie_to_be_open
+import classes.ftp_file_upload
 
 # crawler = crawler.Crawler()
 # crawler.InitSelenium();
 
-movie = classes.movie_to_be_open.Movie_to_be_open()
-movie.crawler()
+# movie = classes.movie_to_be_open.Movie_to_be_open()
+# movie.crawler()
 
 def Root():
   crawler.setWeb('https://naver.com')
+
+asdf = classes.ftp_file_upload.FileUpload()
+asdf.UploadFunc()
 
 # schedule.every(1).minutes.do(Root)
 
