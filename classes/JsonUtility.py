@@ -59,10 +59,10 @@ class JsonUtility:
     # @param string moviename 영화 제목
     # @param int rank 순위
     # @param int variable 변틍폭 
-    @dispatch(str, int, int)
-    def makeformet(self, moviename : str, rank : int, variable : int):
+    @dispatch(str, int, int, str)
+    def makeformet(self, moviename : str, rank : int, variable : int, variable_img : str):
         self.importjson('./' + co.rankFilename)
-        json_formet = { "movie_name": "" + moviename, "rank": "" + str(rank), "variable" : "" + str(variable)}
+        json_formet = { "movie_name": "" + moviename, "rank": "" + str(rank), "variable" : "" + str(variable), "variable_img" : variable_img}
         for i in range(len(self.jsondata)):
             if moviename == self.jsondata[i]["movie_name"]:
                 return None

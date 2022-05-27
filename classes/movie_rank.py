@@ -29,11 +29,16 @@ class Movie_rank:
         self.json.jsonclear(co.rankFilename)
         self.count = 0
 
-        for tr_tiem in list:
-            a_tag = tr_tiem.select_one('td.title > div > a')
-            variable = tr_tiem.select_one('td.range.ac')
-            if a_tag is not None or variable is not None :
+        for tr_item in list:
+            a_tag = tr_item.select_one('td.title > div > a')
+            variable = tr_item.select_one('td.range.ac')
+            variable_img = tr_item.find('img','arrow')
+
+            if variable_img is not None:
+                print(type(variable_img['src']))
+
+            if a_tag is not None or variable is not None and variable_img is not None :
                 self.count += 1
-                self.json.makeformet(a_tag.get_text(), int(self.count), int(variable.get_text()))
+                self.json.makeformet(a_tag.get_text(), int(self.count), int(variable.get_text()), variable_img['src'])
                 # print(a_tag.get_text())
                 # print(variable.get_text())

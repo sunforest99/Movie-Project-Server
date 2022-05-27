@@ -2,6 +2,7 @@
 # import schedule
 # import time
 # from keep_alive import keep_alive
+from cgi import test
 import classes.JsonUtility as ex
 import classes.movie_rank
 import classes.movie_list
@@ -16,6 +17,9 @@ import classes.ftp_file_upload
 
 def Root():
   crawler.setWeb('https://naver.com')
+
+test = classes.movie_rank.Movie_rank();
+test.crawler();
 
 asdf = classes.ftp_file_upload.FileUpload()
 asdf.UploadFunc()
