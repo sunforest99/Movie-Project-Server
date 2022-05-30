@@ -33,12 +33,10 @@ class Movie_rank:
             a_tag = tr_item.select_one('td.title > div > a')
             variable = tr_item.select_one('td.range.ac')
             variable_img = tr_item.find('img','arrow')
+            count_img =  tr_item.select_one('td.ac > img')
 
-            if variable_img is not None:
-                print(type(variable_img['src']))
-
-            if a_tag is not None or variable is not None and variable_img is not None :
+            if a_tag is not None or variable is not None and variable_img is not None and count_img is not None:
                 self.count += 1
-                self.json.makeformet(a_tag.get_text(), int(self.count), int(variable.get_text()), variable_img['src'])
+                self.json.makeformet(a_tag.get_text(), int(self.count), int(variable.get_text()), variable_img['src'], count_img['src'])
                 # print(a_tag.get_text())
                 # print(variable.get_text())
