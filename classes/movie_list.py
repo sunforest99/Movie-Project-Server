@@ -27,8 +27,4 @@ class Movie_list:
             img = li_item.find('img')['src']
             playtime = li_item.find('dl', 'info_txt1').find('span', 'split').next_sibling.strip()
             grade = li_item.find('div', 'star_t1').find('span', 'num').get_text()
-
             self.json.makeformet(link.get_text(), self.main_url + link['href'], playtime, float(grade), img)
-            # print(link.get_text())
-            #print(link['href'])
-            # print(grade)

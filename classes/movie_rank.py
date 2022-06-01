@@ -38,5 +38,3 @@ class Movie_rank:
             if a_tag is not None or variable is not None and variable_img is not None and count_img is not None:
                 self.count += 1
                 self.json.makeformet(a_tag.get_text(), int(self.count), int(variable.get_text()), variable_img['src'], count_img['src'])
-                # print(a_tag.get_text())
-                # print(variable.get_text())

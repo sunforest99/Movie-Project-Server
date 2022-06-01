@@ -52,7 +52,6 @@ class JsonUtility:
                 return None
         self.jsondata.append(json_formet)
         self.jsondata = list(map(dict, collections.OrderedDict.fromkeys(tuple(sorted(d.items())) for d in self.jsondata)))
-
         self.exportjson('./' + co.listFilename)
     
     # @brief 영화 순위 리스트 json 형식 만들기

@@ -26,7 +26,7 @@ class Movie_to_be_open:
         soup = BeautifulSoup(response.content, 'html.parser')
 
         self.json = js.JsonUtility()
-        self.json.jsonclear(co.listFilename)
+        self.json.jsonclear(co.openFilename)
 
         list = soup.find('div', 'article').find_all('div', 'lst_wrap')
 
